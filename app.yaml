@@ -1,0 +1,15 @@
+runtime: nodejs10
+
+env_variables:
+  SQL_USERNAME: "postgres"
+  SQL_PASSWORD: "password"
+  SQL_DATABASE: "openkahn"
+  SQL_HOST: ""
+  ROOT_URL: ""
+  DEBUG: 1
+  GOOGLE_CLIENT_ID: ""
+  GOOGLE_CLIENT_SECRET: ""
+  FACEBOOK_APP_ID: ""
+  FACEBOOK_APP_SECRET: ""
+  TWITTER_CONSUMER_KEY: ""
+  TWITTER_CONSUMER_SECRET: ""
