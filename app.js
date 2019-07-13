@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const auth = require('auth');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -20,6 +21,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(auth.facebook(process.env.ROOT_URL));
+app.use(auth.google(process.env.ROOT_URL));
+app.use(auth.twitter(process.env.ROOT_URL));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
