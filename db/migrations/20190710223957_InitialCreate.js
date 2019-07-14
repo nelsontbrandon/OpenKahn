@@ -7,17 +7,23 @@ exports.up = function (knex) {
 			table.string('first_name').notNullable();
 			table.string('last_name').notNullable();
 			table.string('nick_name').nullable();
-			table.dateTime('dob').notNullable();
+			table.dateTime('dob').nullable();
 		})
 		.createTable('user_login', (table) => {
 			table.string('login_provider').notNullable();
 			table.string('provider_key').notNullable();
 			table.uuid('user_id').notNullable().references('id').inTable('user').index().onDelete('CASCADE');
+		})
+		.createTable('sessions', (table) => {
+			table.string('sid', 255).notNullable().primary();
+			table.json('sess').notNullable();
+			table.timestamp('expired', {useTz: true}).notNullable();
 		});
 };
 
 exports.down = function (knex) {
-	return table.schema
+	return knex.schema
 		.dropTableIfExists('user_login')
-		.dropTableIfExists('user');
+		.dropTableIfExists('user')
+		.dropTableIfExists('sessions');
 };

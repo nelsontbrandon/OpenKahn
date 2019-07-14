@@ -4,6 +4,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const auth = require('./auth');
+const {Model} = require('objection');
+const knex = require('./config/database');
+
+Model.knex(knex);
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -22,6 +26,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+auth.passport(app);
 app.use(auth.facebook(process.env.ROOT_URL));
 app.use(auth.google(process.env.ROOT_URL));
 app.use(auth.twitter(process.env.ROOT_URL));
