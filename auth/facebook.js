@@ -15,8 +15,8 @@ module.exports = function (basePath) {
 
 	}));
 
-	router.get('/facebook', passport.authenticate('facebook'));
-	router.get('/facebook/callback', passport.authenticate('facebook', {
+	router.get('/auth/facebook', passport.authenticate('facebook'));
+	router.get('/auth/facebook/callback', passport.authenticate('facebook', {
 		successRedirect: '/',
 		failureRedirect: '/login'
 	}));

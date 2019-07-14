@@ -1,8 +1,6 @@
-const express = require('express');
-const router = express.Router;
-const twitter = require('twitter');
-const google = require('Google');
-const facebook = require('Facebook');
+const twitter = require('./twitter');
+const google = require('./google');
+const facebook = require('./facebook');
 
 module.exports = {
 	google: google,
